@@ -1,0 +1,71 @@
+.layout-completo {
+    display: flex;
+    height: 100vh;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #1764e9;
+    width: 12rem;
+    padding: 2rem 1rem;
+}
+
+.sidebar div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sidebar .svg-text {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    justify-content: flex-start;
+    padding-bottom: 1.5rem;
+}
+
+.sidebar #titulo {
+    justify-content: space-between;
+    padding-bottom: 3rem;
+}
+
+.sidebar a , .sidebar button{
+    color: white;
+    margin: 1rem 0 1rem 0;
+    background-color: #1764e9;
+    border: none;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    transition: 500ms;
+    font-size: large;
+}
+
+.sidebar a:hover , .sidebar button:hover{
+    svg {
+        width: 1.7rem;
+        height: auto;
+    }
+}
+
+h1 {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+svg {
+    width: 1.5rem;
+    height: auto;
+    filter: invert(100%);
+    padding-right: 1.5rem;
+    transition: 500ms;
+}
+
+.contenido {
+    padding: 1rem;
+    flex: 1;
+}

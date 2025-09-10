@@ -1,0 +1,12 @@
+<tr>
+    <td>{{contact().firstName}}</td>
+    <td>{{contact().lastName}}</td>
+    <td>{{contact().number}}</td>
+    <td>{{contact().email}}</td>
+    <td><button (click)="contactService.deleteContact(contact().id)">Borrar</button></td>
+    <td>
+    @if (contact().isFavorite === true) {
+        ⭐️
+    }
+    </td>
+</tr>

@@ -1,0 +1,16 @@
+<div>
+    <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+        <h2>Iniciar sesión</h2>
+        <label for="email">Correo electrónico</label>
+        <input id="email" name="email" type="email" ngModel #email="ngModel" required="true" autocomplete="email">
+        <label for="password">Contraseña</label>
+        <input id="password" name="password" type="password" ngModel #password="ngModel" minlength="4" autocomplete="current-password">
+        <button>Entrar</button>
+        @if(isLoading){
+            <app-spinner></app-spinner>
+        }
+        <p>¿No tenés cuenta?</p>
+        <a routerLink="/register">Registrate</a>
+    </form>
+    <a routerLink="/">home</a>
+</div>
