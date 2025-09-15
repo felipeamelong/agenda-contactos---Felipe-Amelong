@@ -10,7 +10,7 @@ export class AuthService {
   token : null|string = localStorage.getItem("token");
 
   async login(loginData: LoginData){
-    const res = await fetch("https://agenda-api.somee.com/swagger/index.html",{
+    const res = await fetch("https://agenda-api.somee.com/api/authentication/authenticate",{
       method: "POST",
       headers: {"Content-type": "application/json"},
       body: JSON.stringify(loginData)

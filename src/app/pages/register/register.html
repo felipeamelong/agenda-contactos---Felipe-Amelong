@@ -1,9 +1,9 @@
 <div class="container">
-  <form #registerForm="ngForm" (ngSubmit)="register(registerForm.value)">
+  <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
      <h2>Registrarse</h2>
     <div class="label-input">
       <label for="firstName">Nombre</label>
-      <input id="firstName" name="firstName" type="text" id="firstName" ngModel #firstName="ngModel" required="true" autocomplete="firstName">
+      <input id="firstName" name="firstName" type="text" ngModel #firstName="ngModel" required="true" autocomplete="firstName">
       @if (firstName.invalid && !firstName.pristine) {
         <p class="error">Debe colocar un nombre.</p>
       }
@@ -17,7 +17,7 @@
     </div>
     <div class="label-input">
       <label for="email">Correo electrónico</label>
-      <input id="email" name="email" type="email" id="email" ngModel #email="ngModel" required="true" autocomplete="email">
+      <input id="email" name="email" type="email" ngModel #email="ngModel" required="true" autocomplete="email">
       @if (email.invalid && !email.pristine) {
         <p class="error">Debe colocar un correo electrónico.</p>
       }
@@ -30,7 +30,7 @@
       }
     </div>
     <div class="label-input">
-      <label for="password">Repite la contraseña</label>
+      <label for="password">Repite la contraseña</label> <!-- CONSULTAR EL FOR -->
       <input id="password2" name="password2" type="password" ngModel #password2="ngModel" minlength="4" autocomplete="new-password">
       @if (password.invalid && !password.pristine) {
         <p class="error">Debe colocar una contraseña de al menos 4 caracteres.</p>
@@ -44,7 +44,7 @@
       <p class="error">Error indeterminado, intente nuevamente.</p>
     } 
     <p>¿Ya tenés cuenta?</p>
-    <a routerLink="/login">Inicia sesion</a>
+    <a routerLink="/login">Iniciá sesion</a>
   </form>
 
   <a routerLink="/">Home</a>
