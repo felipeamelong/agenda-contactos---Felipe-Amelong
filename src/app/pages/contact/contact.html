@@ -1,14 +1,18 @@
-<table>
-  <tr>
-    <th>Nombre</th>
-    <th>Apellido</th>
-    <th>Teléfono</th>
-    <th>Email</th>
-  </tr>
-  @for (contacto of contactService.contacts; track $index) {
-      <app-contact-list-item [contact]="contacto"></app-contact-list-item>
-  }
-</table>
+<div class="tabla">
+  <div class="header">
+    <span>Nombre</span>
+    <span>Apellido</span>
+    <span>Teléfono</span>
+    <span>Email</span>
+    <span>Favoritos</span>
+    <span>Acciones</span>
+  </div>
+  <ul class="body">
+    @for (contacto of contactService.contacts; track $index) {
+        <app-contact-list-item [contact]="contacto"></app-contact-list-item>
+    }
+  </ul>
+</div>
 <h2>Nuevo contacto</h2>
 <form (ngSubmit)="createContact(newContactForm.value)" #newContactForm="ngForm">
   <div>
