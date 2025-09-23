@@ -5,19 +5,25 @@ import { Groups } from './pages/groups/groups';
 import { Login } from './pages/login/login'
 import { Routes } from '@angular/router';
 import { Register } from './pages/register/register';
+import { onlyPublicUserGuard } from './guards/only-public-user-guard';
+import { onlyLoggedUserGuard } from './guards/only-logged-user-guard';
+import { NewContact } from './pages/new-contact/new-contact';
 
 export const routes: Routes = [
 {
     path: "login",
-    component: Login
+    component: Login,
+    canActivate: [onlyPublicUserGuard]
 },
 {
     path: "register",
-    component: Register
+    component: Register,
+    canActivate: [onlyPublicUserGuard]
 },
 {
     path: "",
     component: LoggedLayout,
+    canActivateChild: [onlyLoggedUserGuard],
     children: [
     {
     path: "",
@@ -30,6 +36,10 @@ export const routes: Routes = [
     {
     path:"groups",
     component: Groups
+    },
+    {
+    path:"new-contact",
+    component: NewContact
     }
     ]
 }

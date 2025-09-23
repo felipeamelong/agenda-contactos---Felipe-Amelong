@@ -3,8 +3,11 @@
     <span>{{contact().lastName}}</span>
     <span>{{contact().number}}</span>
     <span>{{contact().email}}</span>
-    <span><button (click)="contactService.deleteContact(contact().id)">Borrar</button></span>
     @if (contact().isFavorite === true) {
         <span>⭐️</span>
     }
+    @else {
+        <span></span>
+    }
+    <span><button (click)="contactService.deleteContact(contact().id)">Borrar</button></span>
 </li>
