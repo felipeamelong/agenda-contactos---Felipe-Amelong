@@ -19,19 +19,4 @@ export class Contact {
 
   authService = inject(AuthService);
   contactService = inject(ContactService)
-
-  createContact(form:any){
-    const nuevoContacto: NewContactT ={
-      firstName: form.firstName,
-      lastName: form.lastName,
-      address: form.address,
-      email: form.email,
-      image: form.image,
-      number: form.number,
-      company: form.company,
-      isFavorite: form.isFavorite
-    }
-
-    this.contactService.createContact(nuevoContacto)
-  }
 }
