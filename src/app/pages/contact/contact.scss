@@ -1,3 +1,11 @@
+.contenedor {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 100%;
+}
+
 .tabla { 
     width: 100%;
 }
@@ -7,4 +15,21 @@
     grid-template-columns: repeat(6, 1fr);
     padding-bottom: 0.5rem;
     border-bottom: 1px solid gray;
+}
+
+.boton {
+    text-decoration: none;
+    background-color: #2575fc;
+    font-size: large;
+    color: white;
+    border: 1px solid #2575fc;
+    padding: 1rem;
+    border-radius: 1rem;
+    transition: 500ms;
+}
+
+.boton:hover{
+    background-color: white;
+    color: #2575fc;
+    cursor: pointer;
 }

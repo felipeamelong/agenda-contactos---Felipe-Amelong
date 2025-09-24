@@ -1,18 +1,20 @@
-<div class="tabla">
-  <div class="header">
-    <span>Nombre</span>
-    <span>Apellido</span>
-    <span>Teléfono</span>
-    <span>Email</span>
-    <span>Favoritos</span>
-    <span>Acciones</span>
+<div class="contenedor">
+  <div class="tabla">
+    <div class="header">
+      <span>Nombre</span>
+      <span>Apellido</span>
+      <span>Teléfono</span>
+      <span>Email</span>
+      <span>Favoritos</span>
+      <span>Acciones</span>
+    </div>
+    <ul class="body">
+      @for (contacto of contactService.contacts; track $index) {
+          <app-contact-list-item [contact]="contacto"></app-contact-list-item>
+      }
+    </ul>
   </div>
-  <ul class="body">
-    @for (contacto of contactService.contacts; track $index) {
-        <app-contact-list-item [contact]="contacto"></app-contact-list-item>
-    }
-  </ul>
-</div>
-<div>
-  <a routerLink="new-contact">+ Nuevo contacto</a>
+  <div>
+    <button class="boton" routerLink="new-contact">+ Nuevo contacto</button>
+  </div>
 </div>
