@@ -1,8 +1,9 @@
-import { Component, inject } from '@angular/core';
-import { NewContactT } from '../../interfaces/contact-type';
+import { Component, inject, input, OnInit, viewChild } from '@angular/core';
+import { ContactT, NewContactT } from '../../interfaces/contact-type';
 import { ContactService } from '../../services/contact-service';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ContactDetails } from '../contact-details/contact-details';
 
 
 @Component({
@@ -11,23 +12,46 @@ import { Router } from '@angular/router';
   templateUrl: './new-contact.html',
   styleUrl: './new-contact.scss'
 })
-export class NewContact {
+export class NewContact implements OnInit{
   contactService = inject(ContactService);
   router = inject(Router);
-  
-  createContact(form:any){
-    const nuevoContacto: NewContactT ={
-      firstName: form.firstName,
-      lastName: form.lastName,
-      address: form.address,
-      email: form.email,
-      image: form.image,
-      number: form.number,
-      company: form.company,
-      isFavorite: form.isFavorite
-    }
+  idContacto = input<number>();
+  contactoOriginal: ContactT|undefined = undefined;
+  form = viewChild<NgForm>('newContactForm');
 
-    this.contactService.createContact(nuevoContacto)
+  async ngOnInit() {
+    if (this.idContacto()){
+      this.contactoOriginal = await this.contactService.getContactsById(this.idContacto()!);
+      this.form()?.setValue({
+        firstName: this.contactoOriginal!.firstName,
+        lastName: this.contactoOriginal!.lastName,
+        address: this.contactoOriginal!.address,
+        email: this.contactoOriginal!.email,
+        image: this.contactoOriginal!.image,
+        number: this.contactoOriginal!.number,
+        company: this.contactoOriginal!.company,
+        isFavourite: this.contactoOriginal!.isFavorite,
+      })
+    }
+  }
+
+  async handleFormSubmission(form:NgForm){
+    const nuevoContacto: NewContactT ={
+      firstName: form.value.firstName,
+      lastName: form.value.lastName,
+      address: form.value.address,
+      email: form.value.email,
+      image: form.value.image,
+      number: form.value.number,
+      company: form.value.company,
+      isFavorite: form.value.isFavorite
+    }
+    let res;
+    if (this.idContacto()){
+      res = await this,this.contactService.editContact({...nuevoContacto,id: this.idContacto()!.toString()})
+    } else {
+      res = await this.contactService.createContact(nuevoContacto)
+    }
     this.router.navigate(["/"])
   }
 }

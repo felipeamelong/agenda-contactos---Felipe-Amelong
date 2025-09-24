@@ -9,5 +9,8 @@
     @else {
         <span></span>
     }
-    <span><button (click)="contactService.deleteContact(contact().id)">Borrar</button></span>
+    <span>
+        <button (click)="contactService.deleteContact(contact().id)">Borrar</button>
+        <a [routerLink]="['/edit-contact/',contact().id]">Editar</a>
+    </span>
 </li>

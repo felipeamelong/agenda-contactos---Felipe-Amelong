@@ -1,6 +1,10 @@
 <div class="formulario">
-  <h2>Nuevo contacto</h2>
-  <form (ngSubmit)="createContact(newContactForm.value)" #newContactForm="ngForm">
+  @if (idContacto()) {
+    <h2>Editar contacto</h2>
+  } @else {
+    <h2>Nuevo contacto</h2>
+  }
+  <form (ngSubmit)="handleFormSubmission(newContactForm)" #newContactForm="ngForm">
     <div class="campo">
       <label for="first-name">Nombre</label>
       <input id="first-name" name="firstName" type="text" ngModel required="true" minlength="2" maxlength="20">
@@ -33,6 +37,11 @@
       <label for="favourite">Favorito</label>
       <input id="favourite" name="isFavourite" type="checkbox" ngModel>
     </div>
+    @if (idContacto()) {
+    <button [disabled]="newContactForm.invalid">Editar</button>
+  } @else {
     <button [disabled]="newContactForm.invalid">+</button>
+  }
+    
   </form>
 </div>

@@ -40,7 +40,11 @@ export const routes: Routes = [
     {
     path:"new-contact",
     component: NewContact
-    }
+    },
+    {
+    path: "edit-contact/:idContacto",
+    component: NewContact
+    },
     ]
 }
 ];

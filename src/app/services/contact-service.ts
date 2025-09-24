@@ -22,7 +22,17 @@ export class ContactService {
     this.contacts = resJson;
   }
 
-  getContactsById() { }
+  async getContactsById(id: string | number) { 
+    const res = await fetch(`https://agenda-api.somee.com/api/contacts/${id}`,
+      {
+        headers: {
+          Authorization: "Bearer " + this.authService.token,
+        },
+      }
+    )
+    const resContact:ContactT = await res.json();
+    return resContact  
+  }
 
   async createContact(nuevoContacto: NewContactT) {
     const contacto: ContactT = {
@@ -41,7 +51,23 @@ export class ContactService {
     )
   }
 
-  editContact() { }
+  async editContact(contactoEditado: ContactT) { 
+    const res = await fetch(`https://agenda-api.somee.com/api/contacts/${contactoEditado.id}`,
+      {
+        method: "PUT",
+        headers: {
+          Authorization: "Bearer " + this.authService.token,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(contactoEditado)
+      }
+    );
+    this.contacts = this.contacts.map(contact => {
+      if (contact.id !== contactoEditado.id) return contactoEditado;
+      return contact
+    })
+    return contactoEditado;
+  }
 
   async deleteContact(id: string) {
     const res = await fetch(`https://agenda-api.somee.com/api/contacts/${id}`,
@@ -60,5 +86,21 @@ export class ContactService {
     }
   }
 
-  setFavourite() { }
-}
+  async setFavourite(id: string) { 
+    const res = await fetch(`https://agenda-api.somee.com/api/contacts/${id}/favorite`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: "Bearer " + this.authService.token,
+        },
+      }
+    )
+    this.contacts = this.contacts.map(contact => {
+      if (contact.id !== id) {
+        return {...contact, isFavorite: !contact.isFavorite}
+      };
+      return contact
+    })
+    return true
+  }
+  }
