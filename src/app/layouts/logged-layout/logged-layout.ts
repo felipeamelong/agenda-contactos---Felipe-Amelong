@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { RouterOutlet, RouterLink} from '@angular/router';
 import { AuthService } from '../../services/auth-service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-logged-layout',
@@ -9,5 +10,19 @@ import { AuthService } from '../../services/auth-service';
   styleUrl: './logged-layout.scss'
 })
 export class LoggedLayout {
-  authService = inject(AuthService)
+  authService = inject(AuthService);
+  openLogoutModal (){
+    Swal.fire({
+      title: "Desea cerrar sesión?",
+      showDenyButton: true,
+      showCancelButton: true,
+      showConfirmButton: false,
+      cancelButtonText: "Cancelar",
+      denyButtonText: `Cerrar sesión`
+    }).then((result) => {
+      if (result.isDenied) {
+        this.authService.logout();
+      }
+    });
+  }
 }

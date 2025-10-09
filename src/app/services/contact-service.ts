@@ -86,21 +86,20 @@ export class ContactService {
     }
   }
 
-  async setFavourite(id: string) { 
-    const res = await fetch(`https://agenda-api.somee.com/api/contacts/${id}/favorite`,
+  async setFavourite(id:string | number ) {
+    const res = await fetch(`https://agenda-api.somee.com/api/contacts/${id}/favorite`, 
       {
         method: "POST",
         headers: {
           Authorization: "Bearer " + this.authService.token,
         },
-      }
-    )
+      });
     this.contacts = this.contacts.map(contact => {
-      if (contact.id !== id) {
-        return {...contact, isFavorite: !contact.isFavorite}
+      if(contact.id === id) {
+        return {...contact, isFavorite: !contact.isFavorite};
       };
-      return contact
-    })
-    return true
+      return contact;
+    });
+    return true;
   }
-  }
+}
