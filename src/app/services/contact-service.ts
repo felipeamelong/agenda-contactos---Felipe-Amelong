@@ -18,7 +18,8 @@ export class ContactService {
         }
       }
     )
-    const resJson: ContactT[] = await res.json()
+    const resJson: ContactT[] = await res.json();
+    console.log("Contactos recibidos desde el servidor:", resJson);
     this.contacts = resJson;
   }
 
@@ -39,7 +40,7 @@ export class ContactService {
       ...nuevoContacto,
       id: Math.random().toString()
     }
-    await fetch("https://agenda-api.somee.com/api/contacts",
+    const res = await fetch("https://agenda-api.somee.com/api/contacts",
       {
         method: "POST",
         headers: {
@@ -49,6 +50,7 @@ export class ContactService {
         body: JSON.stringify(contacto)
       }
     )
+    return await res.json()
   }
 
   async editContact(contactoEditado: ContactT) { 
@@ -63,7 +65,9 @@ export class ContactService {
       }
     );
     this.contacts = this.contacts.map(contact => {
-      if (contact.id !== contactoEditado.id) return contactoEditado;
+      if (contact.id === contactoEditado.id) {
+        return contactoEditado;
+      }
       return contact
     })
     return contactoEditado;

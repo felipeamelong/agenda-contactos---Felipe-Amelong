@@ -3,8 +3,6 @@ import { ContactT, NewContactT } from '../../interfaces/contact-type';
 import { ContactService } from '../../services/contact-service';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ContactDetails } from '../contact-details/contact-details';
-
 
 @Component({
   selector: 'app-new-contact',
@@ -30,13 +28,13 @@ export class NewContact implements OnInit{
         image: this.contactoOriginal!.image,
         number: this.contactoOriginal!.number,
         company: this.contactoOriginal!.company,
-        isFavourite: this.contactoOriginal!.isFavorite,
+        isFavorite: this.contactoOriginal!.isFavorite,
       })
     }
   }
 
   async handleFormSubmission(form:NgForm){
-    const nuevoContacto: NewContactT ={
+    const contactData: NewContactT = {
       firstName: form.value.firstName,
       lastName: form.value.lastName,
       address: form.value.address,
@@ -44,14 +42,23 @@ export class NewContact implements OnInit{
       image: form.value.image,
       number: form.value.number,
       company: form.value.company,
-      isFavorite: form.value.isFavorite
+      isFavorite: form.value.isFavorite === true
     }
-    let res;
+    
     if (this.idContacto()){
-      res = await this,this.contactService.editContact({...nuevoContacto,id: this.idContacto()!.toString()})
+      await this.contactService.editContact({...contactData, id: this.idContacto()!.toString()});
+      if (this.contactoOriginal?.isFavorite !== contactData.isFavorite) {
+        await this.contactService.setFavourite(this.idContacto()!);
+      }
+
     } else {
-      res = await this.contactService.createContact(nuevoContacto)
+      const contactoCreado = await this.contactService.createContact(contactData);
+      if (contactData.isFavorite === true) {
+        await this.contactService.setFavourite(contactoCreado.id);
+      }
     }
-    this.router.navigate(["/"])
+    
+    await this.contactService.getContacts();
+    this.router.navigate(["/"]);
   }
 }
