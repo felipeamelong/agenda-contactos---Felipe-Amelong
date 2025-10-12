@@ -8,6 +8,7 @@ import { Register } from './pages/register/register';
 import { onlyPublicUserGuard } from './guards/only-public-user-guard';
 import { onlyLoggedUserGuard } from './guards/only-logged-user-guard';
 import { NewContact } from './pages/new-contact/new-contact';
+import { NewGroup } from './pages/new-group/new-group';
 
 export const routes: Routes = [
 {
@@ -36,6 +37,10 @@ export const routes: Routes = [
     {
     path:"groups",
     component: Groups
+    },
+    {
+    path:"new-group",
+    component: NewGroup
     },
     {
     path:"new-contact",

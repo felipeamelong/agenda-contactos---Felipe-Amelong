@@ -1,1 +1,17 @@
-<p>groups works!</p>
+<div class="contenedor">
+  <div class="tabla">
+    <div class="header">
+      <span>Nombre del grupo</span>
+      <span>Participantes</span>
+      <span>Acciones</span>
+    </div>
+    <ul class="body">
+      @for (grupo of groupService.groups; track $index) {
+          <app-group-list-item [group]="grupo"></app-group-list-item>
+      }
+    </ul>
+  </div>
+  <div>
+    <button class="boton" routerLink="/new-group">+ Nuevo grupo</button>
+  </div>
+</div>

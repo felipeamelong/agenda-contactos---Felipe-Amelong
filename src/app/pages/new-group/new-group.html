@@ -1,0 +1,10 @@
+<div class="formulario">
+  <h2>Nuevo Grupo</h2>
+  <form (ngSubmit)="handleFormSubmission(newGroupForm)" #newGroupForm="ngForm">
+    <div class="campo">
+      <label for="group-name">Nombre del grupo</label>
+      <input id="group-name" name="name" type="text" ngModel required="true" minlength="2" maxlength="20">
+    </div>
+    <button [disabled]="newGroupForm.invalid">Crear Grupo</button>
+  </form>
+</div>

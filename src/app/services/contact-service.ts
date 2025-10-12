@@ -19,7 +19,6 @@ export class ContactService {
       }
     )
     const resJson: ContactT[] = await res.json();
-    console.log("Contactos recibidos desde el servidor:", resJson);
     this.contacts = resJson;
   }
 

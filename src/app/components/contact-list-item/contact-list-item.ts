@@ -13,7 +13,7 @@ import Swal from 'sweetalert2';
 export class ContactListItem {
   contact = input.required<ContactT>()
   contactService = inject(ContactService)
-ContactListItem: any;
+  ContactListItem: any;
   openDeleteModal(){
       Swal.fire({
         title: "Desea eliminar el contacto?",
