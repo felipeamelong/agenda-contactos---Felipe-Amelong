@@ -7,7 +7,7 @@ export interface ContactT {
     address: string,
     image: string,
     number: string,
-    company: string
+    company: string,
 }
 
 export type NewContactT = Omit<ContactT,"id">;

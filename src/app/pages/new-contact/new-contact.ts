@@ -42,7 +42,7 @@ export class NewContact implements OnInit{
       image: form.value.image,
       number: form.value.number,
       company: form.value.company,
-      isFavorite: form.value.isFavorite === true
+      isFavorite: form.value.isFavorite === true,
     }
     
     if (this.idContacto()){
@@ -58,7 +58,6 @@ export class NewContact implements OnInit{
       }
     }
     
-    await this.contactService.getContacts();
     this.router.navigate(["/"]);
   }
 }

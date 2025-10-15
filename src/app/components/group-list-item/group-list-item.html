@@ -2,7 +2,7 @@
     <span>{{group().name}}</span>
     <span></span>
     <span>
-        <button>Borrar</button>
-        <a>Editar</a>
+        <button (click)="openDeleteModal()">Borrar</button>
+        <a [routerLink]="['/edit-group/',group().id]" >Editar</a>
     </span>
 </li>

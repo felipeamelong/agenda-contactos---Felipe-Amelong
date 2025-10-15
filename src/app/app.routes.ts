@@ -50,6 +50,10 @@ export const routes: Routes = [
     path: "edit-contact/:idContacto",
     component: NewContact
     },
+    {
+    path: "edit-group/:idGrupo",
+    component: NewGroup
+    },
     ]
 }
 ];
