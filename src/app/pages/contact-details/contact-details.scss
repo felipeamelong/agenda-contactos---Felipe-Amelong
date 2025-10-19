@@ -1,0 +1,75 @@
+.contenedor-general {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.carta {
+  width: 40%;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+svg {
+    max-width: 40%;
+}
+
+.favorito {
+    margin-top: 1rem;
+}
+
+.header {
+  background-color: #f7f9fc;
+  text-align: center;
+  padding: 2rem;
+}
+
+h2 {
+  margin: 0;
+  font-size: 2rem;
+  color: #333;
+}   
+
+.detalles {
+  padding: 1.5rem 2rem;
+}
+
+.detalle-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.tipo {
+  color: #555;
+}
+
+.dato {
+  color: #111;
+}
+
+.actions {
+  text-align: center;
+  padding: 1.5rem;
+  background-color: #f7f9fc;
+}
+
+.boton-volver {
+  text-decoration: none;
+  background-color: #2575fc;
+  color: white;
+  border: 1px solid #2575fc;
+  padding: 1rem;
+  border-radius: 1rem;
+  transition: 500ms;
+  font-weight: bold;
+}
+
+.boton-volver:hover {
+    background-color: white;
+    color: #2575fc;
+    cursor: pointer;
+}

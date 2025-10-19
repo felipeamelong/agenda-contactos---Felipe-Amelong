@@ -3,6 +3,11 @@ li {
     grid-template-columns: repeat(3, 1fr);
     border-bottom: 1px solid #ddd;
     align-items: center;
+    transition: 500ms;
+}
+
+li:hover{
+    background-color: #F5F5F5;
 }
 
 button , a {

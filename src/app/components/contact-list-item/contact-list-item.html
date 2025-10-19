@@ -1,8 +1,8 @@
 <li>
-    <span>{{contact().firstName}}</span>
-    <span>{{contact().lastName}}</span>
-    <span>{{contact().number}}</span>
-    <span>{{contact().email}}</span>
+    <span [routerLink]="['/contact/',contact().id]">{{contact().firstName}}</span>
+    <span [routerLink]="['/contact/',contact().id]">{{contact().lastName}}</span>
+    <span [routerLink]="['/contact/',contact().id]">{{contact().number}}</span>
+    <span [routerLink]="['/contact/',contact().id]">{{contact().email}}</span>
     @if (contact().isFavorite === true) {
         <span>⭐️</span>
     }
@@ -10,7 +10,7 @@
         <span></span>
     }
     <span>
-        <button (click)="openDeleteModal()">Borrar</button>
-        <a [routerLink]="['/edit-contact/',contact().id]">Editar</a>
+        <button class="boton" (click)="openDeleteModal()">Borrar</button>
+        <a class="boton" [routerLink]="['/edit-contact/',contact().id]">Editar</a>
     </span>
 </li>
