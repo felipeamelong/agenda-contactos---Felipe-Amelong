@@ -23,3 +23,11 @@ form {
 input {
     width: 120%;
 }
+
+app-spinner {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}

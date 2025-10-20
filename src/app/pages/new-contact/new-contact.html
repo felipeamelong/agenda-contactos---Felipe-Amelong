@@ -48,8 +48,11 @@
     </div>
     @if (idContacto()) {
     <button [disabled]="newContactForm.invalid || isLoading">Editar</button>
-  } @else {
+    } @else {
     <button [disabled]="newContactForm.invalid || isLoading">+</button>
-  }
+    } 
+    @if (isLoading) {
+      <app-spinner></app-spinner>
+    }
   </form>
 </div>

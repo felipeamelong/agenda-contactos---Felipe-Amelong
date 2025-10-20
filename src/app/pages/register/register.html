@@ -1,6 +1,6 @@
 <div class="container">
   <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
-     <h2>Registrarse</h2>
+    <h2>Registrarse</h2>
     <div class="label-input">
       <label for="firstName">Nombre</label>
       <input id="firstName" name="firstName" type="text" ngModel #firstName="ngModel" required="true" autocomplete="firstName">
@@ -30,16 +30,16 @@
       }
     </div>
     <div class="label-input">
-      <label for="password">Repite la contraseña</label> <!-- CONSULTAR EL FOR -->
+      <label for="password">Repite la contraseña</label>
       <input id="password2" name="password2" type="password" ngModel #password2="ngModel" minlength="4" autocomplete="new-password">
       @if (password.invalid && !password.pristine) {
         <p class="error">Debe colocar una contraseña de al menos 4 caracteres.</p>
       }
     </div>
+    <button>Iniciar sesión</button>
     @if(isLoading){
         <app-spinner></app-spinner>
     }
-    <button>Iniciar sesión</button>
     @if (errorRegister) {
       <p class="error">Error indeterminado, intente nuevamente.</p>
     } 

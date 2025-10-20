@@ -4,10 +4,11 @@ import { ContactService } from '../../services/contact-service';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { GroupService } from '../../services/group-service';
+import { Spinner } from '../../components/spinner/spinner';
 
 @Component({
   selector: 'app-new-contact',
-  imports: [FormsModule],
+  imports: [FormsModule, Spinner],
   templateUrl: './new-contact.html',
   styleUrl: './new-contact.scss'
 })
@@ -52,7 +53,7 @@ export class NewContact implements OnInit{
     }
 
     this.isLoading = true
-    
+
     if (this.idContacto()){
       await this.contactService.editContact({...contactData, id: this.idContacto()!.toString()});
       if (this.contactoOriginal?.isFavorite !== contactData.isFavorite) {
