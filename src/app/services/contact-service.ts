@@ -67,8 +67,8 @@ export class ContactService {
       if (contact.id === contactoEditado.id) {
         return contactoEditado;
       }
-      return contact
-    })
+      return contact;
+    });
     return contactoEditado;
   }
 

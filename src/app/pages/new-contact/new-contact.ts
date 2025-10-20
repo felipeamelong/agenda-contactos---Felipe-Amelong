@@ -3,6 +3,7 @@ import { ContactT, NewContactT } from '../../interfaces/contact-type';
 import { ContactService } from '../../services/contact-service';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { GroupService } from '../../services/group-service';
 
 @Component({
   selector: 'app-new-contact',
@@ -12,12 +13,14 @@ import { Router } from '@angular/router';
 })
 export class NewContact implements OnInit{
   contactService = inject(ContactService);
+  groupService = inject(GroupService);
   router = inject(Router);
   idContacto = input<number>();
   contactoOriginal: ContactT|undefined = undefined;
   form = viewChild<NgForm>('newContactForm');
 
   async ngOnInit() {
+    await this.groupService.getGroups();
     if (this.idContacto()){
       this.contactoOriginal = await this.contactService.getContactsById(this.idContacto()!);
       this.form()?.setValue({
@@ -29,6 +32,7 @@ export class NewContact implements OnInit{
         number: this.contactoOriginal!.number,
         company: this.contactoOriginal!.company,
         isFavorite: this.contactoOriginal!.isFavorite,
+        groupId: this.contactoOriginal!.groupId || null, 
       })
     }
   }
@@ -43,6 +47,7 @@ export class NewContact implements OnInit{
       number: form.value.number,
       company: form.value.company,
       isFavorite: form.value.isFavorite === true,
+      groupId: form.value.groupId
     }
     
     if (this.idContacto()){
@@ -57,7 +62,7 @@ export class NewContact implements OnInit{
         await this.contactService.setFavourite(contactoCreado.id);
       }
     }
-    
+
     this.router.navigate(["/"]);
   }
 }

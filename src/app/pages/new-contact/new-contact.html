@@ -34,6 +34,15 @@
       <input id="image" name="image" type="text" ngModel minlength="10">
     </div>
     <div class="campo">
+      <label for="group">Grupo</label>
+      <select id="group" name="groupId" ngModel>
+        <option [ngValue]="null">Sin grupo</option> 
+        @for (group of groupService.groups; track group.id) {
+          <option [value]="group.id">{{ group.name }}</option>
+        }
+      </select>
+    </div>
+    <div class="campo">
       <label for="favourite">Favorito</label>
       <input id="favourite" name="isFavorite" type="checkbox" ngModel>
     </div>
