@@ -18,6 +18,7 @@ export class NewContact implements OnInit{
   idContacto = input<number>();
   contactoOriginal: ContactT|undefined = undefined;
   form = viewChild<NgForm>('newContactForm');
+  isLoading = false;
 
   async ngOnInit() {
     await this.groupService.getGroups();
@@ -49,6 +50,8 @@ export class NewContact implements OnInit{
       isFavorite: form.value.isFavorite === true,
       groupId: form.value.groupId
     }
+
+    this.isLoading = true
     
     if (this.idContacto()){
       await this.contactService.editContact({...contactData, id: this.idContacto()!.toString()});

@@ -47,9 +47,9 @@
       <input id="favourite" name="isFavorite" type="checkbox" ngModel>
     </div>
     @if (idContacto()) {
-    <button [disabled]="newContactForm.invalid">Editar</button>
+    <button [disabled]="newContactForm.invalid || isLoading">Editar</button>
   } @else {
-    <button [disabled]="newContactForm.invalid">+</button>
+    <button [disabled]="newContactForm.invalid || isLoading">+</button>
   }
   </form>
 </div>
